@@ -11,12 +11,17 @@
         <input @change="onChange" name="fichierJoint" type="file" id="fichierJoint" />
         <button type="submit" @click="sendNewPost">Envoyer</button>
       </div>
-      <div>
-        <ul>
-          <li>
-             <Post id="ancientPosts" :key="post.id" :post="post" v-for="post in allPosts" />
-          </li>
-        </ul>  
+      <div v-for="post in allPosts" :key="post.id">
+        <div>
+          <p class="name"> <b>{{ post.User.username }}</b></p>
+          <br>
+          <div>
+            <p>{{ post.content }}</p>
+          </div>
+          <br>
+          <img v-show="post.fichierJoint !== null && post.fichierJoint !== ''" :src="post.fichierJoint" alt="fichier joint à la publication" />
+          <button v-show="isAdmin == 1 || User.id == post.userId" @click="deletePost(post)">Supprimer</button>
+        </div>   
       </div>
     </div>
   </div>
@@ -34,9 +39,9 @@ export default {
   },
   data(){
     return{
-      posts:{
+      post:{
         content: "",
-        image: "",
+        fichierJoint: "",
         id: ""
       },
       allPosts: [],
@@ -54,7 +59,6 @@ export default {
         }
       })
       .then(response => {
-        console.log(this.allPosts)
         this.allPosts = response.data
       })
       .catch(error => console.log(error))
@@ -85,7 +89,7 @@ export default {
           })
           .then(response => {
             if (response) {
-              window.location.reload();
+              window.location.reload()
             }
           })
           .catch(error => (error))
@@ -102,9 +106,11 @@ export default {
       })
     },
     deletePost(){
-      axios.delete("http://localhost:3000/api/post/deletePost" + post.id, {
-
+      axios.delete("http://localhost:3000/api/post/deletePost", {
       })
+      .then(response => {
+            if (response) {
+              window.location.reload()
     }*/
   }
 }

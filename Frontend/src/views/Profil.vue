@@ -35,8 +35,8 @@ export default {
       }
     })
     .then(response => {
-      this.dataProfil.username = response.data.username
-      this.dataProfil.user_date = response.data.createdAt
+      this.dataProfil.username = JSON.stringify(response.data.username)
+      this.dataProfil.user_date = JSON.stringify(response.data.createdAt)
     })
     .catch(error => error)
   },

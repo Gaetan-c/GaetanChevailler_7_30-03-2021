@@ -19,7 +19,7 @@ exports.createPost = (req, res) => {
             else {
                 URLfichierJoint == null
             }
-            if (content == 'null' && URLfichierJoint == null) {
+            if (content == '' && URLfichierJoint == null) {
                 res.status(400).json({ error: "Vous voulez vraiment envoyer un message vide ?" })
             } else {
                 models.Post.create({

@@ -43,7 +43,7 @@ export default {
       const validPassword = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,200})/
       const validEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g
       const validUsername = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,40}$/
-
+      
       if (
         (this.dataSignup.email !== null || this.dataSignup.username !== null || this.dataSignup.password !== null) &&
         (validPassword.test(this.dataSignup.password) && validEmail.test(this.dataSignup.email) && validUsername.test(this.dataSignup.username))
