@@ -9,11 +9,14 @@
       <div id="createPost">
         <input v-model="newPost.content" id="newPostContent" type="text" placeholder="Dites-le à vos collègues"/>
         <input @change="onChange" name="fichierJoint" type="file" id="fichierJoint" />
-        <button name="submitButton" type="submit" @click="sendNewPost">Envoyer</button>
+        <button type="submit" @click="sendNewPost">Envoyer</button>
       </div>
       <div>
-        <Post id="ancientPosts" :key="post.id" :post="post" v-for="post in allPosts" />
-        {{ allPosts }}
+        <ul>
+          <li>
+             <Post id="ancientPosts" :key="post.id" :post="post" v-for="post in allPosts" />
+          </li>
+        </ul>  
       </div>
     </div>
   </div>
@@ -63,6 +66,9 @@ export default {
       localStorage.removeItem("token")
       this.$router.push("/")
     },
+    onChange(event) {
+      this.newPost.fichierJoint = event.target.files[0] || event.dataTransfer.files
+    },
     sendNewPost(){
       const formData = new FormData()
       formData.append("fichierJoint", this.newPost.fichierJoint)
@@ -84,9 +90,6 @@ export default {
           })
           .catch(error => (error))
       }
-    },
-    onChange(event) {
-      this.newPost.fichierJOint = event.target.files[0] || event.dataTransfer.files
     },
     /*updatePost(){
       axios.put("http://localhost:3000/api/post/updatePost,{
