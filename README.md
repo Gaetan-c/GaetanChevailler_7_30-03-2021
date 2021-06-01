@@ -52,7 +52,10 @@ sur le terminal du backend : Lancer le server avec 'npm start'. (Si cela ne fonc
 sur le terminal du frontend : Lancer le front Vue avec 'npm run serve', il vous indiquera l'url hôte. (Si cela ne fonctionne pas, refaire un 'npm install' sur le frontend)
 
 
-
+ATTENTION : pour se connecter à l'application:
+X - une adresse mail valide (x@x.xxx)
+X - un nom sans caractère spécial, chiffre ou espace
+X - un password avec 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial parmi 8 caractères minnimum !
 
 
 
