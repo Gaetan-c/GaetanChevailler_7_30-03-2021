@@ -13,7 +13,7 @@
       </div>
       <div v-for="post in allPosts" :key="post.id">
         <div>
-          <p class="name"> <b>{{ post.User.username }}</b></p>
+          <p class="name"><b>{{ post.User.username }}</b></p>
           <br>
           <div>
             <p>{{ post.content }}</p>
@@ -51,10 +51,10 @@ export default {
       }
     }
   },
-  methods: {
-    mounted(){
+  mounted(){
       axios.get("http://localhost:3000/api/post", {
         headers : {
+          'Content-Type': 'application/json',
           Authorization : "Bearer" + localStorage.getItem("token")
         }
       })
@@ -63,6 +63,8 @@ export default {
       })
       .catch(error => console.log(error))
     },
+  methods: {
+    
     profilPage(){
       this.$router.push("Profil")
     },
@@ -97,11 +99,6 @@ export default {
     },
     /*updatePost(){
       axios.put("http://localhost:3000/api/post/updatePost,{
-
-      })
-    },
-    getOnePost(){
-      axios.get("http://localhost:3000/api/post/" + post.id,{
 
       })
     },

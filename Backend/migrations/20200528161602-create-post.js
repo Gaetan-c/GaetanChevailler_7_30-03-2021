@@ -19,7 +19,7 @@ module.exports = {
       content: {
         type: Sequelize.STRING
       },
-      attachement: {
+      fichierJoint: {
         type: Sequelize.STRING
       },
       createdAt: {

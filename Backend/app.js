@@ -1,11 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-
 const userRoutes = require('./routes/user.js')
 const postRoutes = require('./routes/post.js')
-
 const path = require('path')
-
 const app = express()
 
 app.use((req, res, next) => {

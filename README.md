@@ -1,7 +1,14 @@
 # GaetanChevailler_7_30-03-2021
 Projet 7 : création d'un réseau social d'entreprise
 
-créer un fichier config avec un document config.json du type :
+Prérequis avant clonage du dépôt : Node js, MySQL et Vue/CLI.
+
+1 - Télécharger le dépôt.
+Ouvrir l'invite de commande et faire "npm install".
+
+2 - Ouvrir le read.me en mode edit (= dans l'éditeur de code) pour garder la mise en page indentée d'origine.
+
+3 - Créer un dossier config avec un document config.json du type :
 
 {
   "development": {
@@ -32,13 +39,17 @@ créer un fichier config avec un document config.json du type :
     "timezone": "+00:00 (pour la France)"
   }
 },
-dans le même dossier config, créer un document config.env:
+
+4 - Remplacer les valeurs par les vôtre
+
+5 - Dans le même dossier config, créer un document config.env:
 dans celui-ci écrivez TOKEN_SECRET = ici entrez une clef secrète aléatoire. 
 
-sur le backend : lancer le server avec 'npm start',
-sur le front : lancer le front Vue avec 'npm run serve', il vous indiquera l'url hôte.
+6 - sur la ligne de commande globale : faire 'sequelize db:create && sequelize db:migrate' pour créer la BDD.
 
-
+7 - Pour lancer le serveur :
+sur le terminal du backend : Lancer le server avec 'npm start'. (Si cela ne fonctionne pas, faire un 'npm install' sur le backend)
+sur le terminal du frontend : Lancer le front Vue avec 'npm run serve', il vous indiquera l'url hôte. (Si cela ne fonctionne pas, refaire un 'npm install' sur le frontend)
 
 
 

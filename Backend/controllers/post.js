@@ -60,7 +60,6 @@ exports.onTheWall = (req, res) => {
 }
 
 exports.deletePost = (req, res) => {
-    //req => userId, postId, user.isAdmin
     let userOrder = req.body.userIdOrder
 
     let id = utils.getUserId(req.headers.authorization)
@@ -69,7 +68,6 @@ exports.deletePost = (req, res) => {
         where: { id: id }
     })
     .then(user => {
-        //Vérification que le demandeur est soit l'admin soit le poster (vérif aussi sur le front)
         if (user && (user.isAdmin == true || user.id == userOrder)) {
             models.Post.findOne({
                 where: { id: req.body.postId }
@@ -99,7 +97,6 @@ exports.deletePost = (req, res) => {
 }
 
 exports.updatePost = (req, res) => {
-    //récupération de l'id du demandeur pour vérification
     let userOrder = req.body.userIdOrder
 
     let id = utils.getUserId(req.headers.authorization)
@@ -108,7 +105,6 @@ exports.updatePost = (req, res) => {
         where: { id: id }
     })
     .then(user => {
-        //Vérification que le demandeur est soit l'admin soit le poster (vérif aussi sur le front)
         if (user && (user.isAdmin == true || user.id == userOrder)) {
             models.Post.update({
                 content: req.body.newText,
