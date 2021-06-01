@@ -52,19 +52,21 @@ export default {
     }
   },
   mounted(){
+      this.getAllPosts()
+    },
+  methods: {
+    getAllPosts(){
       axios.get("http://localhost:3000/api/post", {
         headers : {
           'Content-Type': 'application/json',
-          Authorization : "Bearer" + localStorage.getItem("token")
+          Authorization : "Bearer: " + localStorage.getItem("token")
         }
       })
-      .then(response => {
+      .then((response) => {
         this.allPosts = response.data
       })
-      .catch(error => console.log(error))
+      .catch((error) => error)
     },
-  methods: {
-    
     profilPage(){
       this.$router.push("Profil")
     },

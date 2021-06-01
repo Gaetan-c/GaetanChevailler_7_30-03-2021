@@ -31,14 +31,14 @@ export default {
   mounted(){
     axios.get("http://localhost:3000/api/user/me", {
       headers : {
-        Authorization : "Bearer" + localStorage.getItem("token")
+        Authorization : "Bearer: " + localStorage.getItem("token")
       }
     })
-    .then(response => {
+    .then((response) => {
       this.dataProfil.username = JSON.stringify(response.data.username)
       this.dataProfil.user_date = JSON.stringify(response.data.createdAt)
     })
-    .catch(error => error)
+    .catch((error) => error)
   },
   methods: {
     wallPage(){
