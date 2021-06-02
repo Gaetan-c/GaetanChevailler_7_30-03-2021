@@ -58,65 +58,40 @@ exports.onTheWall = (req, res) => {
     })
     .catch(err => res.status(500).json(err))
 }
-
+/*
 exports.deletePost = (req, res) => {
-    let userOrder = req.body.userIdOrder
+    let userId = req.body.userId
 
     let id = utils.getUserId(req.headers.authorization)
     models.User.findOne({
-        attributes: ['id', 'email', 'username', 'isAdmin'],
+        attributes: ['id', 'email', 'username'],
         where: { id: id }
     })
     .then(user => {
-        if (user && (user.isAdmin == true || user.id == userOrder)) {
+        if (user && user.id == userId) {
             models.Post.findOne({
                 where: { id: req.body.postId }
             })
-            .then((postFind) => {
-                if (postFind.fichierJoint) {
-                    const filename = postFind.fichierJoint.split('/images/')[1]
+            .then((post) => {
+                if (post.fichierJoint) {
+                    const filename = post.fichierJoint.split('/images/')[1]
                     fs.unlink(`images/${filename}`, () => {
                         models.Post.destroy({
-                            where: { id: postFind.id }
+                            where: { id: post.id }
                         })
                         .then(() => res.end())
                         .catch(err => res.status(500).json(err))
                     })
                 }else {
                     models.Post.destroy({
-                        where: { id: postFind.id }
+                        where: { id: post.id }
                     })
                     .then(() => res.end())
                     .catch(err => res.status(500).json(err))
                 }
             })
-            .catch(err => res.status(500).json(err))
+            .catch(error => res.status(500).json(error))
         } else { res.status(403).json('Utilisateur non autorisé à supprimer ce post') }
     })
     .catch(error => res.status(500).json(error))
-}
-
-exports.updatePost = (req, res) => {
-    let userOrder = req.body.userIdOrder
-
-    let id = utils.getUserId(req.headers.authorization)
-    models.User.findOne({
-        attributes: ['id', 'email', 'username', 'isAdmin'],
-        where: { id: id }
-    })
-    .then(user => {
-        if (user && (user.isAdmin == true || user.id == userOrder)) {
-            models.Post.update({
-                content: req.body.newText,
-                fichierJoint: req.body.newImg
-            },
-            { where: { id: req.body.postId } }
-            )
-            .then(() => res.end())
-            .catch(err => res.status(500).json(err))
-        }else{
-            res.status(401).json({ error: 'Utilisateur non autorisé à modifier ce post' })
-        }
-    })
-    .catch(error => res.status(500).json(error))
-}
+}*/

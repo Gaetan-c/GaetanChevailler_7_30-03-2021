@@ -35,8 +35,9 @@ export default {
       }
     })
     .then((response) => {
-      this.dataProfil.username = JSON.stringify(response.data.username)
-      this.dataProfil.user_date = JSON.stringify(response.data.createdAt)
+      this.dataProfil.username = response.data.username
+      this.dataProfil.user_date = response.data.createdAt.substr(0,10)
+      localStorage.setItem("userId", response.data.id)
     })
     .catch((error) => error)
   },

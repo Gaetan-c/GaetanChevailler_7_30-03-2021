@@ -11,17 +11,15 @@
         <input @change="onChange" name="fichierJoint" type="file" id="fichierJoint" />
         <button type="submit" @click="sendNewPost">Envoyer</button>
       </div>
-      <div v-for="post in allPosts" :key="post.id">
+      <div id="posts" v-for="post in allPosts" :key="post.id">
+        <p class="name"><b>{{ post.User.username }}</b></p>
+        <br>
         <div>
-          <p class="name"><b>{{ post.User.username }}</b></p>
-          <br>
-          <div>
-            <p>{{ post.content }}</p>
-          </div>
-          <br>
-          <img v-show="post.fichierJoint !== null && post.fichierJoint !== ''" :src="post.fichierJoint" alt="fichier joint à la publication" />
-          <button v-show="isAdmin == 1 || User.id == post.userId" @click="deletePost(post)">Supprimer</button>
-        </div>   
+          <p>{{ post.content }}</p>
+        </div>
+        <br>
+        <img v-show="post.fichierJoint !== null && post.fichierJoint !== ''" :src="post.fichierJoint" alt="fichier joint à la publication" />
+        <button v-show="user.userId == post.userId" @click="deletePost(post)">Supprimer</button> 
       </div>
     </div>
   </div>
@@ -29,6 +27,7 @@
 
 <script>
 // @ is an alias to /src
+
 import axios from "axios"
 import Post from "@/components/Post"
 
@@ -85,8 +84,7 @@ export default {
       if (formData.get("fichierJoint") == "null" && formData.get("content") == "null") {
         console.log("Envoyer du vide ?")
       } else {
-        axios
-          .post("http://localhost:3000/api/post/createPost", formData, {
+        axios.post("http://localhost:3000/api/post/createPost", formData, {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -99,17 +97,17 @@ export default {
           .catch(error => (error))
       }
     },
-    /*updatePost(){
-      axios.put("http://localhost:3000/api/post/updatePost,{
-
+    /*deletePost(){
+      axios.delete("http://localhost:3000/api/post/deletePost",{
+          headers: {
+            Authorization: "Bearer: " + localStorage.getItem("token")
+          }
       })
-    },
-    deletePost(){
-      axios.delete("http://localhost:3000/api/post/deletePost", {
+      .then((response) => {
+        if (response) {
+          window.location.reload()
+        }
       })
-      .then(response => {
-            if (response) {
-              window.location.reload()
     }*/
   }
 }
@@ -148,6 +146,24 @@ export default {
     color: darkred;
   }
 }
+
+#posts{
+  width: 97%;
+  height: auto;
+  border: solid darkred 3px;
+  border-top-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  margin: 5px 0px;
+  padding: 20px 0px;
+  object-fit: cover;
+  
+  img{
+    width: 95%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
 
 #theWall {
   width: 98%;

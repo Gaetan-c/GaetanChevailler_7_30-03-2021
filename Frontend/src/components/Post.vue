@@ -1,10 +1,14 @@
 <template>
-  <div class="post">
-    <h1>{{ post.User.username }}</h1>
-    <hr>
-    <p> {{ post.content }} </p>
-    <p> {{ post.fichierJoint }} </p>
-  </div>
+ <div class="post">
+    <p class="name"><b>{{ post.User.username }}</b></p>
+    <br>
+    <div>
+      <p>{{ post.content }}</p>
+    </div>
+    <br>
+    <img v-show="post.fichierJoint !== null && post.fichierJoint !== ''" :src="post.fichierJoint" contain alt="fichier joint à la publication" />
+    <button  @click="deletePost(post)">Supprimer</button>
+  </div> 
 </template>
 
 <script>

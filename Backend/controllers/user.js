@@ -89,7 +89,7 @@ exports.login = (req, res) => {
 exports.getOneUser = (req, res) => {
     let id = utils.getUserId(req.headers.authorization)
     models.User.findOne({
-        attributes: ["id", "email", "username","isAdmin"],
+        attributes: ["id", "email", "username","isAdmin", "createdAt"],
         where: { id: id }
     })
     .then(user => res.status(200).json(user))
